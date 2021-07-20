@@ -34,7 +34,7 @@ const SignUp = () => {
 			<input type="password" onChange={e => setPasswordAgain(e.target.value)}>
 
 			<PasswordChecklist
-				rules={["length","specialChar","number","capital","match"]}
+				rules={["length","specialChar","number","capital","minus","match"]}
 				minLength={5}
 				value={password}
 				valueAgain={passwordAgain}
@@ -62,7 +62,7 @@ const SignUp = () => {
 			<input type="password" onChange={e => setPasswordAgain(e.target.value)}>
 
 			<PasswordChecklist
-				rules={["length","specialChar","number","capital","match"]}
+				rules={["length","specialChar","number","capital","minus","match"]}
 				minLength={8}
 				value={password}
 				valueAgain={passwordAgain}
@@ -71,6 +71,7 @@ const SignUp = () => {
 					specialChar: "La contraseña tiene caracteres especiales.",
 					number: "La contraseña tiene un número.",
 					capital: "La contraseña tiene una letra mayúscula.",
+					minus: "La contraseña tiene una letra minúscula.",
 					match: "Las contraseñas coinciden.",
 				}}
 			/>
@@ -99,6 +100,10 @@ Valid if the password contains a number.
 
 Valid if the password contains a capital letter.
 
+#### minus
+
+Valid if the password contains a lower case letter.
+
 #### match
 
 Valid if the password matches the confirm password valud. Requires `valueAgain` prop to be included.
@@ -107,7 +112,7 @@ Valid if the password matches the confirm password valud. Requires `valueAgain` 
 
 | Prop         | Description                                                                                                        | Type     | Required                     | Default           |
 | ------------ | ------------------------------------------------------------------------------------------------------------------ | -------- | ---------------------------- | ----------------- |
-| rules        | Rules to display in the order desired.<br />Options are `length`, `specialChar`,<br />`number`, `capital`, `match` | array    | yes                          |
+| rules        | Rules to display in the order desired.<br />Options are `length`, `specialChar`,<br />`number`, `capital`, `minus`, `match` | array    | yes                          |
 | value        | Current potential password                                                                                         | string   | yes                          |
 | minLength    | Minimum Password Length                                                                                            | number   | Only with<br />`length` rule |
 | valueAgain   | Current potential password confirmation                                                                            | string   | Only with<br />`match` rule  |

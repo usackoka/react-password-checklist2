@@ -1,9 +1,9 @@
-import React from "react"
-import { storiesOf } from "@storybook/react"
-import { action } from "@storybook/addon-actions"
-import ReactPasswordChecklist, { RuleNames } from "./index"
+import React from "react";
+import { storiesOf } from "@storybook/react";
+import { action } from "@storybook/addon-actions";
+import ReactPasswordChecklist, { RuleNames } from "./index";
 
-import { withKnobs, text, number, array } from "@storybook/addon-knobs"
+import { withKnobs, text, number, array } from "@storybook/addon-knobs";
 storiesOf("ReactPasswordChecklist", module)
 	.addDecorator(withKnobs)
 	.add("Default", () => (
@@ -18,6 +18,7 @@ storiesOf("ReactPasswordChecklist", module)
 					"specialChar",
 					"number",
 					"capital",
+					"minus",
 					"match",
 				]) as Array<RuleNames>
 			}
@@ -35,6 +36,7 @@ storiesOf("ReactPasswordChecklist", module)
 					"specialChar",
 					"number",
 					"capital",
+					"minus",
 					"match",
 				]) as Array<RuleNames>
 			}
@@ -43,7 +45,8 @@ storiesOf("ReactPasswordChecklist", module)
 				specialChar: "La contraseña tiene caracteres especiales.",
 				number: "La contraseña tiene un número.",
 				capital: "La contraseña tiene una letra mayúscula.",
+				minus: "La contraseña tiene una letra minúscula.",
 				match: "Las contraseñas coinciden.",
 			}}
 		/>
-	))
+	));

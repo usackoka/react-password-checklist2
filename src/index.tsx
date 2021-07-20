@@ -1,29 +1,30 @@
-import React, { useState, useEffect } from "react"
-import styled from "styled-components"
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
 
 interface PasswordProps {
-	value: string
-	valueAgain?: string
-	minLength?: number
-	iconSize?: number
-	validColor?: string
-	invalidColor?: string
-	onChange?: (isValid: boolean) => any
+	value: string;
+	valueAgain?: string;
+	minLength?: number;
+	iconSize?: number;
+	validColor?: string;
+	invalidColor?: string;
+	onChange?: (isValid: boolean) => any;
 	messages?: {
-		[key in RuleNames]?: string
-	}
+		[key in RuleNames]?: string;
+	};
 }
 export type RuleNames =
 	| "length"
 	| "specialChar"
 	| "number"
 	| "capital"
-	| "match"
+	| "minus"
+	| "match";
 
 export interface ReactPasswordChecklistProps extends PasswordProps {
-	className?: string
-	style?: React.CSSProperties
-	rules: Array<RuleNames>
+	className?: string;
+	style?: React.CSSProperties;
+	rules: Array<RuleNames>;
 }
 const ReactPasswordProps: React.FC<ReactPasswordChecklistProps> = ({
 	className,
@@ -36,9 +37,9 @@ const ReactPasswordProps: React.FC<ReactPasswordChecklistProps> = ({
 	messages = {},
 	...remainingProps
 }) => {
-	const [isValid, setIsValid] = useState(false)
+	const [isValid, setIsValid] = useState(false);
 	const ruleDefinitions: {
-		[key in RuleNames]: { valid: boolean; message: string }
+		[key in RuleNames]: { valid: boolean; message: string };
 	} = {
 		length: {
 			valid: value.length >= (minLength || 100),
@@ -55,60 +56,79 @@ const ReactPasswordProps: React.FC<ReactPasswordChecklistProps> = ({
 		},
 		capital: {
 			valid: (() => {
-				var i = 0
+				var i = 0;
 				if (value.length === 0) {
-					return false
+					return false;
 				}
 				while (i < value.length) {
-					const character = value.charAt(i)
+					const character = value.charAt(i);
 					if (character == character.toLowerCase()) {
 						// Character is lowercase, numeric, or a symbol
 					} else if (character == character.toUpperCase()) {
-						return true
+						return true;
 					}
-					i++
+					i++;
 				}
-				return false
+				return false;
 			})(),
 			message: messages.capital || "Password has a capital letter.",
+		},
+		minus: {
+			valid: (() => {
+				var i = 0;
+				if (value.length === 0) {
+					return false;
+				}
+				while (i < value.length) {
+					const character = value.charAt(i);
+					if (character == character.toLowerCase()) {
+						return true;
+					} else if (character == character.toUpperCase()) {
+						// Character is upperCase, numeric, or a symbol
+					}
+					i++;
+				}
+				return false;
+			})(),
+			message: messages.minus || "Password has a lowercase letter.",
 		},
 		match: {
 			valid: value.length > 0 && value === valueAgain,
 			message: messages.match || "Passwords match.",
 		},
-	}
-	const enabledRules = rules.filter((rule) => Boolean(ruleDefinitions[rule]))
+	};
+	const enabledRules = rules.filter((rule) => Boolean(ruleDefinitions[rule]));
 	useEffect(() => {
 		if (enabledRules.every((rule) => ruleDefinitions[rule].valid)) {
-			setIsValid(true)
+			setIsValid(true);
 		} else {
-			setIsValid(false)
+			setIsValid(false);
 		}
-	}, [value, valueAgain])
+	}, [value, valueAgain]);
 	useEffect(() => {
 		if (typeof onChange === "function") {
-			onChange(isValid)
+			onChange(isValid);
 		}
-	}, [isValid])
+	}, [isValid]);
 	return (
 		<UL className={className} style={style}>
 			{enabledRules.map((rule) => {
-				const { message, valid } = ruleDefinitions[rule]
+				const { message, valid } = ruleDefinitions[rule];
 				return (
 					<Rule key={rule} valid={valid} {...remainingProps}>
 						{message}
 					</Rule>
-				)
+				);
 			})}
 		</UL>
-	)
-}
+	);
+};
 
 interface RuleProps {
-	valid: boolean
-	iconSize?: number
-	validColor?: string
-	invalidColor?: string
+	valid: boolean;
+	iconSize?: number;
+	validColor?: string;
+	invalidColor?: string;
 }
 const Rule: React.FC<RuleProps> = ({
 	valid,
@@ -137,13 +157,13 @@ const Rule: React.FC<RuleProps> = ({
 			</Svg>
 			<span>{children}</span>
 		</LI>
-	)
-}
+	);
+};
 
 const UL = styled.ul`
 	margin: 0;
 	padding: 0;
-`
+`;
 const LI = styled.li`
 	list-style-type: none;
 	display: flex;
@@ -153,15 +173,15 @@ const LI = styled.li`
 		padding-top: 2px;
 		opacity: ${(props) => (props.className === "valid" ? 1 : 0.5)};
 	}
-`
+`;
 const Svg = styled.svg`
 	margin-right: 5px;
-`
+`;
 
 ReactPasswordProps.defaultProps = {
 	iconSize: 18,
 	validColor: "#4BCA81",
 	invalidColor: "#FF0033",
-}
+};
 
-export default ReactPasswordProps
+export default ReactPasswordProps;
