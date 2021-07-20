@@ -81,10 +81,11 @@ const ReactPasswordProps: React.FC<ReactPasswordChecklistProps> = ({
 				}
 				while (i < value.length) {
 					const character = value.charAt(i);
-					if (character == character.toLowerCase()) {
+					if (
+						character == character.toLowerCase() &&
+						character != character.toUpperCase()
+					) {
 						return true;
-					} else if (character == character.toUpperCase()) {
-						// Character is upperCase, numeric, or a symbol
 					}
 					i++;
 				}
