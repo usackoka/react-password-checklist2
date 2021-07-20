@@ -1,7 +1,7 @@
 # React Password Checklist
 
 [![npm version](https://img.shields.io/npm/v/react-password-checklist2)](https://www.npmjs.com/package/react-password-checklist2) ![Minzipped Size](https://img.shields.io/bundlephobia/minzip/react-password-checklist2) ![NPM Downloads](https://img.shields.io/npm/dw/react-password-checklist2) ![NPM License](https://img.shields.io/npm/l/react-password-checklist2)
-<br /> [![Build Status](https://api.travis-ci.com/sators/react-password-checklist2.svg?branch=master&status=passed)](https://travis-ci.com/sators/react-password-checklist2) [![Coverage Status](https://coveralls.io/repos/github/sators/react-password-checklist2/badge.svg?branch=master)](https://coveralls.io/github/sators/react-password-checklist2?branch=master) [![Issues](https://img.shields.io/github/issues/sators/react-password-checklist2)](https://github.com/sators/react-password-checklist2/issues) [![Pull Requests](https://img.shields.io/github/issues-pr/sators/react-password-checklist2)](https://github.com/sators/react-password-checklist2/pulls) [![Twitter](https://img.shields.io/twitter/follow/sators.svg?style=social&label=@sators)](https://twitter.com/sators)
+<br /> [![Build Status](https://api.travis-ci.com/usackoka/react-password-checklist2.svg?branch=master&status=passed)](https://travis-ci.com/usackoka/react-password-checklist2) [![Coverage Status](https://coveralls.io/repos/github/usackoka/react-password-checklist2/badge.svg?branch=master)](https://coveralls.io/github/usackoka/react-password-checklist2?branch=master) [![Issues](https://img.shields.io/github/issues/usackoka/react-password-checklist2)](https://github.com/usackoka/react-password-checklist2/issues) [![Pull Requests](https://img.shields.io/github/issues-pr/usackoka/react-password-checklist2)](https://github.com/usackoka/react-password-checklist2/pulls) [![Twitter](https://img.shields.io/twitter/follow/usackoka.svg?style=social&label=@sators)](https://twitter.com/usackoka)
 
 A React Component to display the success or failure of password strength rules that updates as a user types.
 
@@ -89,7 +89,7 @@ Valid if the password meets the minimum length. Requires `minLength` prop to be 
 
 #### specialChar
 
-Valid if the password contains a special character from [this list](https://github.com/sators/react-password-checklist2/blob/master/src/index.tsx#L44).
+Valid if the password contains a special character from [this list](https://github.com/usackoka/react-password-checklist2/blob/master/src/index.tsx#L44).
 
 #### number
 
