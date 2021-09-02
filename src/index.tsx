@@ -13,6 +13,7 @@ interface PasswordProps {
 		[key in RuleNames]?: string;
 	};
 }
+
 export type RuleNames =
 	| "length"
 	| "specialChar"
@@ -47,7 +48,7 @@ const ReactPasswordProps: React.FC<ReactPasswordChecklistProps> = ({
 				messages.length || `Password has more than ${minLength} characters.`,
 		},
 		specialChar: {
-			valid: /[~`!#$%\^&*@+=\-\[\]\\';,/{}|\\":<>\?\.]/g.test(value),
+			valid: /[#?!@$%^&*.-]/g.test(value),
 			message: messages.specialChar || "Password has special characters.",
 		},
 		number: {
